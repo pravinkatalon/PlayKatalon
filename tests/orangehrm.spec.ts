@@ -70,7 +70,6 @@ test.describe('OrangeHRM Tests', () => {
 
   // Test 6: Upload a file attachment on My Info > Personal Details page
   test('TC06 - Upload file attachment on My Info page', async ({ page }) => {
-    test.setTimeout(0);
     await loginPage.login(CREDENTIALS.admin.username, CREDENTIALS.admin.password);
     await dashboardPage.expectDashboardVisible();
 
@@ -83,6 +82,8 @@ test.describe('OrangeHRM Tests', () => {
     await myInfoPage.uploadAttachment(filePath, 'Automated upload test');
     await myInfoPage.expectUploadSuccess();
     await myInfoPage.expectNewAttachmentAdded('test-photo.png', 'Automated upload test', rowsBefore);
-    await page.waitForTimeout(Number.MAX_SAFE_INTEGER);
+    if (!process.env.CI) {
+      await page.waitForTimeout(Number.MAX_SAFE_INTEGER);
+    }
   });
 });
