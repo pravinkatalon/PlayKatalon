@@ -27,9 +27,13 @@ export class DashboardPage {
     await this.logoutMenuItem.click();
   }
 
-  async getSidebarMenuItems(): Promise<string[]> {
-    await this.sidebarItems.first().waitFor({ state: 'visible' });
-    return this.sidebarItems.allTextContents();
+  async expectSidebarMenuContains(menuNames: string[]) {
+    // Check each item exists as a sidebar link in the DOM — not affected by scroll or viewport clipping
+    for (const name of menuNames) {
+      await expect(
+        this.page.locator('.oxd-main-menu-item', { hasText: name })
+      ).toHaveCount(1, { timeout: 10000 });
+    }
   }
 
   async navigateTo(menuItemName: string) {

@@ -34,12 +34,7 @@ test.describe('OrangeHRM Tests', () => {
     await loginPage.login(CREDENTIALS.admin.username, CREDENTIALS.admin.password);
     await dashboardPage.expectDashboardVisible();
 
-    const menuItems = await dashboardPage.getSidebarMenuItems();
-    const expectedMenus = ['Admin', 'PIM', 'Leave', 'Time', 'Recruitment'];
-
-    for (const menu of expectedMenus) {
-      expect(menuItems).toContain(menu);
-    }
+    await dashboardPage.expectSidebarMenuContains(['Admin', 'PIM', 'Leave', 'Time', 'Recruitment']);
   });
 
   // Test 4: PIM module - employee list loads and search returns all records
