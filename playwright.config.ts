@@ -20,7 +20,11 @@ export default defineConfig({
   },
   projects: [
     {
-      name: 'chromium',
+      name: 'OrangeHRM Tests',
+      testMatch: '**/orangehrm.spec.ts',
+      use: {
+        browserName: 'chromium',
+      },
     },
   ],
 });
