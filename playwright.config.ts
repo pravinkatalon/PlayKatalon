@@ -13,9 +13,9 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     headless: false,
-    viewport: null,
+    viewport: process.env.CI ? { width: 1920, height: 1080 } : null,
     launchOptions: {
-      args: ['--start-maximized'],
+      args: process.env.CI ? [] : ['--start-maximized'],
     },
   },
   projects: [

@@ -27,6 +27,7 @@ export class PimPage {
   }
 
   async searchEmployee(name: string) {
+    await this.searchNameInput.scrollIntoViewIfNeeded();
     await this.searchNameInput.fill(name);
     await this.searchButton.click();
     await this.page.waitForLoadState('networkidle');
