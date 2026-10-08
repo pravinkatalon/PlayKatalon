@@ -24,6 +24,8 @@ export default defineConfig({
       testMatch: '**/orangehrm.spec.ts',
       use: {
         browserName: 'chromium',
+        channel: 'chrome',
+        // Test Cloud maps this to Chrome 151 via its capabilities
       },
     },
   ],
