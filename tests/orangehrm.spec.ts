@@ -45,14 +45,9 @@ test.describe('OrangeHRM Tests', () => {
     const pimPage = new PimPage(page);
     await pimPage.navigate();
 
-    // Verify the employee list table is visible
-    await expect(pimPage.employeeTable).toBeVisible();
-
-    // Search with no filter to return all employees
-    await pimPage.searchEmployee('');
+    // Employee list loads automatically on navigation — no search needed
     await expect(pimPage.employeeRows.first()).toBeVisible({ timeout: 15000 });
-
-    // Verify the Add button is present
+    await expect(pimPage.employeeTable).toBeVisible();
     await expect(pimPage.addEmployeeButton).toBeVisible();
   });
 
