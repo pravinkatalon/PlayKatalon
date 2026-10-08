@@ -23,11 +23,11 @@ export class PimPage {
 
   async navigate() {
     await this.page.goto('/web/index.php/pim/viewEmployeeList');
-    await this.pageHeader.waitFor({ state: 'visible' });
+    await this.page.waitForLoadState('networkidle');
+    await this.searchNameInput.waitFor({ state: 'visible', timeout: 15000 });
   }
 
   async searchEmployee(name: string) {
-    await this.searchNameInput.scrollIntoViewIfNeeded();
     await this.searchNameInput.fill(name);
     await this.searchButton.click();
     await this.page.waitForLoadState('networkidle');
